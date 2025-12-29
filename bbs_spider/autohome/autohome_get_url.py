@@ -87,7 +87,7 @@ def to_redis_error(data):
 
 
 def get_auto_url():
-    start_url = 'http://club.autohome.com.cn/'
+    start_url = 'https://club.autohome.com.cn/'
     html = requests.get(start_url, headers=headers, proxies=proxies).content
     # links = etree.HTML(html).xpath('//*[@id="tab-4"]/div/div[2]/ul/li/a/@href') # 车系论坛
     # links = etree.HTML(html).xpath('//*[@id="tab-5"]/div/ul/li/a/@href') # 地区论坛

@@ -109,7 +109,7 @@ def get_m4a(url):
     html = requests.get(url, headers=headers2).text
     numlist = etree.HTML(html).xpath('//div[@class="personal_body"]/@sound_ids')[0].split(',')
     for i in numlist:
-        murl = 'http://www.ximalaya.com/tracks/{}.json'.format(i)
+        murl = 'https://www.ximalaya.com/tracks/{}.json'.format(i)  # Changed to https
         html = requests.get(murl, headers=headers1).text
         dic = json.loads(html)
         col2.insert(dic)

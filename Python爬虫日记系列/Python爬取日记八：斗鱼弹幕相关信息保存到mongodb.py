@@ -81,7 +81,7 @@ def keeplive():
 
 
 def get_name(roomid):
-    r = requests.get("http://www.douyu.com/" + roomid)
+    r = requests.get("https://www.douyu.com/" + roomid)
     soup = BeautifulSoup(r.text, 'lxml')
     return soup.find('a', {'class', 'zb-name'}).string
 

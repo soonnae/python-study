@@ -7,7 +7,7 @@ headers = {
 
 
 def crawl():
-    url = 'http://www.ximalaya.com/tracks/57774592.json'
+    url = 'https://www.ximalaya.com/tracks/57774592.json'
     data = requests.get(url, headers=headers).json()
     # pprint(data)
     while True:

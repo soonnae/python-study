@@ -3,7 +3,7 @@ from lxml import etree
 import importlib
 
 # url1 = 'http://www.chinanews.com/m/kong/2017/05-05/8216106.shtml'  # 手机端接口
-url2 = 'http://www.chinanews.com/gj/2015/06-11/7337348.shtml'
+url2 = 'https://www.chinanews.com/gj/2015/06-11/7337348.shtml'
 # html1 = requests.get(url).content.decode('utf-8')
 # doc1 = etree.HTML(html1).xpath('//*[@id="backtop"]/div[6]/p/text()')
 # print(''.join(doc1))

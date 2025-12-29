@@ -61,11 +61,11 @@ def pop_redis():
 
 
 def get_url_list():
-    url = 'http://bbs.tianya.cn/'
+    url = 'https://bbs.tianya.cn/'  # Changed to https
     try:
         html = requests.get(url, headers=headers, timeout=4).content
         ls = etree.HTML(html).xpath('//*[@id="bbs_left_nav"]/div[8]/ul/li/a/@href')  # lvyou
-        ls = ['http://bbs.tianya.cn' + i for i in ls]
+        ls = ['https://bbs.tianya.cn' + i for i in ls]  # Changed to https
         # print(len(ls))
         for i in ls:
             if not i in filter:
@@ -77,7 +77,7 @@ def get_url_list():
 
 def get_list(url):
     print('this list url is :   ', url)
-    if url == 'http://bbs.tianya.cnjavascript:history.go(-1)':
+    if url == 'https://bbs.tianya.cnjavascript:history.go(-1)':  # Changed to https
         print('over...')
         new_url = pop_redis()
         if start_url != new_url:
@@ -97,7 +97,7 @@ def get_list(url):
             lss = etree.HTML(html).xpath('//*[@id="main"]/div[7]/table/tbody/tr/td[1]/a/@href')
         detail_list = []
         for i in lss:
-            link = 'http://bbs.tianya.cn' + i
+            link = 'https://bbs.tianya.cn' + i  # Changed to https
             detail_list.append(link)
         # thread_main(detail_list)
         thread_pool(detail_list)
@@ -118,9 +118,9 @@ def next_page(url):
     if not next_page:
         next_page = etree.HTML(html).xpath('//*[@id="main"]/div[8]/div/a[last()]/@href')
     if next_page:
-        next_link = 'http://bbs.tianya.cn' + next_page[0]
-        if not 'http://bbs.tianya.cn' in next_link:
-            next_link = 'http://bbs.tianya.cn' + next_page
+        next_link = 'https://bbs.tianya.cn' + next_page[0]  # Changed to https
+        if not 'https://bbs.tianya.cn' in next_link:  # Changed to https
+            next_link = 'https://bbs.tianya.cn' + next_page  # Changed to https
         try:
             get_list(next_link)
         except requests.exceptions.Timeout:
@@ -190,5 +190,5 @@ if __name__ == '__main__':
     with open('daxue.log', 'r') as f:
         ls = f.readlines()
         start_url = ls[-1][42:-1]
-    # start_url = 'http://bbs.tianya.cn/list.jsp?item=university&nextid=1478180709000'
+    # start_url = 'https://bbs.tianya.cn/list.jsp?item=university&nextid=1478180709000'  # Changed to https
     get_list(start_url)

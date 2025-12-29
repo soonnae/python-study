@@ -66,11 +66,11 @@ def pop_redis():
 
 
 def get_url_list():
-    url = 'http://bbs.tianya.cn/'
+    url = 'https://bbs.tianya.cn/'
     try:
         html = requests.get(url, headers=headers, timeout=7).content
         ls = etree.HTML(html).xpath('//*[@id="bbs_left_nav"]/div[7]/ul/li/a/@href')
-        ls = ['http://bbs.tianya.cn' + i for i in ls]
+        ls = ['https://bbs.tianya.cn' + i for i in ls]
         # print(ls)
         for i in ls:
             to_redis(i)

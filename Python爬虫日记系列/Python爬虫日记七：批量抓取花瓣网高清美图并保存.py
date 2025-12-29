@@ -27,11 +27,11 @@ def parser(url, param):
 def get_main_url():
     print('打开主页搜寻链接中...')
     try:
-        doc = parser('http://huaban.com/boards/favorite/beauty/', '#waterfall')
+        doc = parser('https://huaban.com/boards/favorite/beauty/', '#waterfall')
         name = doc.xpath('//*[@id="waterfall"]/div/a[1]/div[2]/h3/text()')
         u = doc.xpath('//*[@id="waterfall"]/div/a[1]/@href')
         for item, fileName in zip(u, name):
-            main_url = 'http://huaban.com' + item
+            main_url = 'https://huaban.com' + item
             print('主链接已找到' + main_url)
             if '*' in fileName:
                 fileName = fileName.replace('*', '')
@@ -52,13 +52,13 @@ def download(main_url, fileName):
         i = 0
         for item in link:
             i += 1
-            minor_url = 'http://huaban.com' + item
+            minor_url = 'https://huaban.com' + item
             doc = parser(minor_url, '#pin_view_page')
             img_url = doc.xpath('//*[@id="baidu_image_holder"]/a/img/@src')
             img_url2 = doc.xpath('//*[@id="baidu_image_holder"]/img/@src')
             img_url += img_url2
             try:
-                url = 'http:' + str(img_url[0])
+                url = 'https:' + str(img_url[0])
                 print('正在下载第' + str(i) + '张图片，地址：' + url)
                 r = requests.get(url)
                 filename = 'image\\{}\\'.format(fileName) + str(i) + '.jpg'

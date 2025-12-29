@@ -31,7 +31,7 @@ headers = {
 
 
 def get_links():
-    url = 'http://news.iyuba.com/'
+    url = 'https://news.iyuba.com/'  # Changed from http to https
     html = requests.get(url, headers=headers).content.decode('utf-8')
     links = etree.HTML(html).xpath('//*[@id="page_header"]/div[4]/div/div[2]/ul/li/a/@href')
     return links[1:]

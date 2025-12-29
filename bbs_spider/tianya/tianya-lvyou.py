@@ -61,7 +61,7 @@ def pop_redis():
 
 
 def get_url_list():
-    url = 'http://bbs.tianya.cn/travel_index.jsp'
+    url = 'https://bbs.tianya.cn/travel_index.jsp'
     try:
         html = requests.get(url, headers=headers, timeout=4).content
         ls = etree.HTML(html).xpath('//*[@id="bbs_left_nav"]/div[3]/ul/li/a/@href')  # lvyou
