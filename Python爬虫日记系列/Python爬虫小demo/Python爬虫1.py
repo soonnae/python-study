@@ -1,6 +1,7 @@
 import urllib.request
 from bs4 import BeautifulSoup
 import os
+import requests  # Import the requests library
 
 # 下载网页
 url = 'http://www.yidianzixun.com/home?page=article&id=0G5zThN8&up=0'
@@ -19,5 +20,7 @@ i = 0
 for link in links:
     i += 1
     filename = 'photo\\' + 'photo' + str(i) + '.gif'
-    with open(filename, 'w') as file:
-        urllib.request.urlretrieve(link, filename)
+    # Use requests to download the image
+    response = requests.get(link)
+    with open(filename, 'wb') as file:  # Open the file in binary write mode
+        file.write(response.content)
