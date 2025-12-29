@@ -15,6 +15,7 @@ import logging
 import pymongo
 from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
+import requests  # Added import for requests library
 
 client = pymongo.MongoClient('localhost')
 db = client['baidu']
@@ -147,14 +148,15 @@ class Spider(object):
         self.queue_put_num = 1000
 
     def get_html(self, url):
-        req = urllib.request.Request(url, headers={'User-Agent': ua.random})
+        headers = {'User-Agent': ua.random}
         time.sleep(random.randint(3, 20))
         attempts = 0
         attempts_times = 15
         while attempts < attempts_times:
             try:
-                website = urllib.request.urlopen(req, timeout=(25 + random.randint(3, 10)))
-                html = website.read().decode('utf-8')
+                response = requests.get(url, headers=headers, timeout=(25 + random.randint(3, 10)))
+                response.raise_for_status()
+                html = response.text
                 return html
             except Exception as e:
                 attempts = attempts + 1

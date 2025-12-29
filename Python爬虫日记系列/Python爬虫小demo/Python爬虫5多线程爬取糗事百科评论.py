@@ -2,6 +2,7 @@ import urllib.request
 import threading
 import re
 import urllib.error
+import requests  # Import the requests library
 
 headers = ("User-Agent",
            "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.22 Safari/537.36 SE 2.X MetaSr 1.0")
@@ -17,7 +18,8 @@ class One(threading.Thread):
     def run(self):
         for i in range(1, 36, 2):
             url = "http://www.qiushibaike.com/8hr/page/" + str(i)
-            pagedata = urllib.request.urlopen(url).read().decode("utf-8", "ignore")
+            response = requests.get(url, headers={"User-Agent": headers[1]})  # Use requests.get with headers
+            pagedata = response.text  # Get the response text
             pat = '<div class="content">.*?<span>(.*?)</span>.*?</div>'
             datalist = re.compile(pat, re.S).findall(pagedata)
             for j in range(0, len(datalist)):
@@ -32,7 +34,8 @@ class Two(threading.Thread):
     def run(self):
         for i in range(0, 36, 2):
             url = "http://www.qiushibaike.com/8hr/page/" + str(i)
-            pagedata = urllib.request.urlopen(url).read().decode("utf-8", "ignore")
+            response = requests.get(url, headers={"User-Agent": headers[1]})  # Use requests.get with headers
+            pagedata = response.text  # Get the response text
             pat = '<div class="content">.*?<span>(.*?)</span>.*?</div>'
             datalist = re.compile(pat, re.S).findall(pagedata)
             for j in range(0, len(datalist)):

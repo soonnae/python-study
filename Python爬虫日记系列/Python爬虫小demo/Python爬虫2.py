@@ -1,6 +1,7 @@
 import urllib.request
 from bs4 import BeautifulSoup
 import os
+import requests  # Import the requests library
 
 url = 'http://www.8she.com/31988.html'
 res = urllib.request.urlopen(url)
@@ -18,5 +19,7 @@ i = 0
 for link in links:
     i += 1
     filename = 'E:\\rieuse\爬虫图片\photo2\\' + 'photo' + str(i) + '.jpg'
-    with open(filename, 'w') as file:
-        urllib.request.urlretrieve(link, filename)
+    # Use requests to download the file
+    response = requests.get(link)
+    with open(filename, 'wb') as file:
+        file.write(response.content)
