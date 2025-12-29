@@ -14,7 +14,7 @@ request.urlretrieve('','1.jpg')
 headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36',
     'Connection': 'keep-alive'}
-url = 'http://www.wmpic.me/86253'
+url = 'https://www.wmpic.me/86253'
 r = requests.get(url, headers=headers)
 soup = BeautifulSoup(r.text, 'html.parser')
 result = soup.select('#content > div.content-c > center > img')

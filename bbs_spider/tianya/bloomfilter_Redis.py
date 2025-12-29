@@ -1,6 +1,6 @@
 # encoding=utf-8
 import redis
-from hashlib import md5
+from hashlib import sha256
 
 
 class SimpleHash(object):
@@ -32,9 +32,9 @@ class BloomFilter(object):
     def isContains(self, str_input):
         if not str_input:
             return False
-        m5 = md5()
-        m5.update(str_input.encode('utf-8'))
-        str_input = m5.hexdigest()
+        sha = sha256()
+        sha.update(str_input.encode('utf-8'))
+        str_input = sha.hexdigest()
         ret = True
         name = self.key + str(int(str_input[0:2], 16) % self.blockNum)
         for f in self.hashfunc:
@@ -43,9 +43,9 @@ class BloomFilter(object):
         return ret
 
     def insert(self, str_input):
-        m5 = md5()
-        m5.update(str_input.encode('utf-8'))
-        str_input = m5.hexdigest()
+        sha = sha256()
+        sha.update(str_input.encode('utf-8'))
+        str_input = sha.hexdigest()
         name = self.key + str(int(str_input[0:2], 16) % self.blockNum)
         for f in self.hashfunc:
             loc = f.hash(str_input)

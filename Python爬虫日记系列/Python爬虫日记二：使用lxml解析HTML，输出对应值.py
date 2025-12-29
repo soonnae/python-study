@@ -1,7 +1,7 @@
 import requests
 import lxml.html
 
-url = 'http://news.ifeng.com/listpage/11502/0/1/rtlist.shtml'
+url = 'https://news.ifeng.com/listpage/11502/0/1/rtlist.shtml'
 html = requests.get(url).text
 doc = lxml.html.fromstring(html)
 titles = doc.xpath('//div[@class="newsList"]/ul/li/a/text()')

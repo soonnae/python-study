@@ -54,7 +54,7 @@ def get_txt(doc):
 
 
 def repaly(repaly_id):
-    url = 'http://comment.mop.com/mopcommentapi/dzh/replylist/api/v170828/replyat/offset/asc/{}/0/100'.format(repaly_id)
+    url = 'https://comment.mop.com/mopcommentapi/dzh/replylist/api/v170828/replyat/offset/asc/{}/0/100'.format(repaly_id)
     try:
         html = requests.get(url, headers=headers).text
     except:
@@ -71,7 +71,7 @@ def get_url():
         #     col1.find()
         #     startcol = 1
         timestamp = int(time.time() * 1000)
-        u = 'http://pclistinterface.mop.com/mdi/data.html?pgnum={}&colid=110007&pgsize=40&serialnum=000000&startcol={}&mirrorid={}&_={}'
+        u = 'https://pclistinterface.mop.com/mdi/data.html?pgnum={}&colid=110007&pgsize=40&serialnum=000000&startcol={}&mirrorid={}&_={}'
         url = u.format(i, startcol, '1507777321', timestamp)
         # startcol = 10019 + (i * 20)
         logger.info(url)
@@ -93,10 +93,10 @@ def get_url():
 
 def parse(articleid):
     try:
-        parse_url = 'http://staticize.mop.com/subject/getArticleById?id={}&type=dzh'.format(articleid)
+        parse_url = 'https://staticize.mop.com/subject/getArticleById?id={}&type=dzh'.format(articleid)
         html = requests.get(parse_url, headers=headers).text
     except:
-        parse_url = 'http://staticize.mop.com/subject/getArticleById?id={}&type=dzh'.format(articleid)
+        parse_url = 'https://staticize.mop.com/subject/getArticleById?id={}&type=dzh'.format(articleid)
         html = requests.get(parse_url, headers=headers).text
     js = json.loads(html)
     repaly_id = str(js['article']['publishtime']) + str(js['article']['rdts'])

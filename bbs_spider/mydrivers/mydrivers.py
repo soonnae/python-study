@@ -25,7 +25,7 @@ headers = {
     'Cache-Control': 'max-age=0',
     'Proxy-Connection': 'keep-alive',
     'Upgrade-Insecure-Requests': '1',
-    'Referer': 'http://news.mydrivers.com/',
+    'Referer': 'https://news.mydrivers.com/',
     'User-Agent': ua.random,
 }
 
@@ -42,9 +42,9 @@ proxies = {
 #     print('over')
 
 
-# url = 'http://blog.mydrivers.com/getnewnewslistjson.aspx?pageid=100&cids=&timestamp={0}&callback=NewsList&_={0}'.format(timestamp)
+# url = 'https://blog.mydrivers.com/getnewnewslistjson.aspx?pageid=100&cids=&timestamp={0}&callback=NewsList&_={0}'.format(timestamp)
 # timestamp = int(time.time())
-# headers['Referer'] = 'http://news.mydrivers.com/'
+# headers['Referer'] = 'https://news.mydrivers.com/'
 
 
 def parse_html(url):
@@ -54,7 +54,7 @@ def parse_html(url):
         content = etree.HTML(html).xpath('//div[@class="news_info"]/p/text()')
         content = ''.join(content)
         article_id = url[-10:-4]
-        comment_url = 'http://comment8.mydrivers.com/ReviewAjax.aspx?Tid={}&Cid=1&Page=1'.format(article_id)
+        comment_url = 'https://comment8.mydrivers.com/ReviewAjax.aspx?Tid={}&Cid=1&Page=1'.format(article_id)
         comment = requests.get(comment_url).text
         doc = {
             'title': title,
@@ -84,7 +84,7 @@ def parse_url(url):
     if int(page_num) >= 2:
         for i in range(int(page_num) + 1):
             if i >= 2:
-                page_url = 'http://news.mydrivers.com/getnewsupdatelistdata.aspx?data={}&pageid={}'.format(date, i)
+                page_url = 'https://news.mydrivers.com/getnewsupdatelistdata.aspx?data={}&pageid={}'.format(date, i)
                 html2 = requests.get(page_url, headers=headers).text
                 detail_urls2 = etree.HTML(html).xpath('//div/div[2]/div[2]/p/a/@href')
                 # print(detail_urls2)
@@ -92,10 +92,10 @@ def parse_url(url):
 
 
 def start():
-    # 'http://news.mydrivers.com/update/2001-05-21.htm'
+    # 'https://news.mydrivers.com/update/2001-05-21.htm'
     for i in range(16, 18):
         for j in range(5, 13):
-            urls = ['http://news.mydrivers.com/update/20{}-{}-{}.htm'.format(str(i).zfill(2), str(j).zfill(2),
+            urls = ['https://news.mydrivers.com/update/20{}-{}-{}.htm'.format(str(i).zfill(2), str(j).zfill(2),
                                                                              str(num).zfill(2)) for num in
                     range(21, 32)]
             for url in urls:
@@ -111,6 +111,6 @@ def thread_pool(item):
 
 
 if __name__ == '__main__':
-    # url = 'http://news.mydrivers.com/1/305/305443.htm'
+    # url = 'https://news.mydrivers.com/1/305/305443.htm'
     # parse_html(url)
     start()

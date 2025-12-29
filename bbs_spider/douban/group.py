@@ -24,7 +24,7 @@ filter = BloomFilter(capacity=15 * (8 * 1024 * 1024), error_rate=0.001)  # 1Mbå
 
 
 def get_proxy():
-    url = 'http://ip.16yun.cn:817/myip/tl/beaf0f87-7598-4ccd-a769-5ad34bbaa85c/?s=rvczzrkjka&u=escainew024'
+    url = 'https://ip.16yun.cn:817/myip/tl/beaf0f87-7598-4ccd-a769-5ad34bbaa85c/?s=rvczzrkjka&u=escainew024'
     proxy = requests.get(url).text
     return proxy
 

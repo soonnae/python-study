@@ -3,7 +3,7 @@ import csv
 import requests
 from bs4 import BeautifulSoup
 
-base_url = 'http://www.jianshu.com/trending/weekly'
+base_url = 'https://www.jianshu.com/trending/weekly'
 
 articles = []
 data_list = []
@@ -15,7 +15,7 @@ for i in range(1, 7):
     soup = BeautifulSoup(html, 'html.parser')
     for article in soup.find_all(class_='content'):
         title = article.find(class_='title').get_text()
-        link = 'http://www.jianshu.com' + article.find(class_='title').get('href')
+        link = 'https://www.jianshu.com' + article.find(class_='title').get('href')
         #author = article.find(class_='blue-link').get_text()
         author = '未知'
         time = article.span['data-shared-at']
